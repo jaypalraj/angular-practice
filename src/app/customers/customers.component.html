@@ -1,0 +1,12 @@
+<h3>Customers</h3>
+<hr />
+
+
+<div class="row">
+    <div class="col-6">
+        <customer-grid [customers]="customers" (editCustomerClick)="onEditCustomerClicked($event)"></customer-grid>
+    </div>
+    <div class="col-6">
+        <customer-edit [customer]="customer" (saveCustomerClick)="onSaveCustomerClicked($event)"></customer-edit>
+    </div>
+</div>
