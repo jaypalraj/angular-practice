@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ICustomer } from '../interfaces/icustomer';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,25 +14,27 @@ export class CustomerService {
     {id:2,firstName:"Varshita",lastName:"Raj",age:30}
   ];
 
-  getCustomers(){
-    return this.customers;
+  getCustomers() : Observable<ICustomer[]>{
+    const custs = this.customers;
+    return of(JSON.parse(JSON.stringify(custs)));
   }
 
-  getCustomer(customerId:number){
-    return this.customers.find(cust => cust.id === customerId);
+  getCustomer(customerId:number) : Observable<ICustomer>{
+    const cust = this.customers.find(cust => cust.id === customerId);
+    return of(JSON.parse(JSON.stringify(cust)));
   }
 
-  addCustomer(customer:ICustomer){
+  addCustomer(customer:ICustomer) : Observable<ICustomer[]>{
     customer.id = this.customers.length + 1;
     this.customers.push(customer);
-    return this.customers;
+    return of(JSON.parse(JSON.stringify(this.customers)));
   }
 
-  updateCustomer(customer:ICustomer){
+  updateCustomer(customer:ICustomer) : Observable<ICustomer[]>{
     var index = this.customers.findIndex((cust, index, array) => cust.id === customer.id);
     this.customers[index] = customer;
 
-    return true;
+    return of(JSON.parse(JSON.stringify(this.customers)));
   }
 
 }

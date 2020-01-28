@@ -1,6 +1,7 @@
 <h5>Edit customer</h5>
 <hr/>
-
+<button class="btn btn-success" (click)="onNewCustomerClick()">New customer</button>
+<hr />
 <form (ngSubmit)="saveCustomer()" #customerForm="ngForm">
     <div class="form-group">
         <label>First name:</label>

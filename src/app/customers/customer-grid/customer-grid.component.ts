@@ -1,11 +1,11 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, ChangeDetectionStrategy, SimpleChanges } from '@angular/core';
 import { ICustomer } from 'src/app/core/interfaces/icustomer';
 import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'customer-grid',
   templateUrl: './customer-grid.component.html',
-  styleUrls: ['./customer-grid.component.css']
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CustomerGridComponent implements OnInit {
 
@@ -20,5 +20,4 @@ export class CustomerGridComponent implements OnInit {
   editCustomerClicked(customer){
     this.editCustomerClick.emit(customer);
   }
-
 }

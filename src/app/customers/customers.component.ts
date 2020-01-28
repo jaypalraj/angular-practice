@@ -4,8 +4,7 @@ import { ICustomer } from '../core/interfaces/icustomer';
 
 @Component({
   selector: 'customers',
-  templateUrl: './customers.component.html',
-  styleUrls: ['./customers.component.css']
+  templateUrl: './customers.component.html'
 })
 export class CustomersComponent implements OnInit {
 
@@ -17,7 +16,7 @@ export class CustomersComponent implements OnInit {
   constructor(private customerService:CustomerService) { }
 
   ngOnInit() {
-    this.customers = this.customerService.getCustomers();
+    this.customerService.getCustomers().subscribe(cust => this.customers = cust);
   }
 
   onEditCustomerClicked(value){
@@ -27,11 +26,11 @@ export class CustomersComponent implements OnInit {
   onSaveCustomerClicked(value){
     if(value.id === 0)
     {
-      this.customerService.addCustomer(value);
+      this.customerService.addCustomer(value).subscribe(cust => this.customers = cust);
     }
     else
     {
-      this.customerService.updateCustomer(value);
+      this.customerService.updateCustomer(value).subscribe(cust => this.customers = cust);
     }
   }
 }
